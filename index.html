@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#071b2d">
+    <meta name="color-scheme" content="light">
+
+    <title>Toruń JUG – społeczność Java i JVM w Toruniu</title>
+    <meta
+      name="description"
+      content="Toruń JUG zrzesza pasjonatów Java i technologii JVM. Organizujemy cykliczne spotkania, prelekcje i networking dla lokalnej społeczności IT."
+    >
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://torun.jug.pl/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Toruń JUG">
+    <meta property="og:title" content="Toruń JUG – społeczność Java i JVM w Toruniu">
+    <meta
+      property="og:description"
+      content="Spotkania, prelekcje i networking dla pasjonatów Java oraz JVM w Toruniu."
+    >
+    <meta property="og:url" content="https://torun.jug.pl/">
+    <meta property="og:image" content="https://torun.jug.pl/static/media/cover.91f954ec.jpg">
+    <meta property="og:image:secure_url" content="https://torun.jug.pl/static/media/cover.91f954ec.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="2500">
+    <meta property="og:image:height" content="1667">
+    <meta property="og:image:alt" content="Uczestnicy spotkania Toruń JUG">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@TorunJUG">
+    <meta name="twitter:title" content="Toruń JUG – społeczność Java i JVM w Toruniu">
+    <meta
+      name="twitter:description"
+      content="Spotkania, prelekcje i networking dla pasjonatów Java oraz JVM w Toruniu."
+    >
+    <meta name="twitter:image" content="https://torun.jug.pl/static/media/cover.91f954ec.jpg">
+    <meta name="twitter:image:alt" content="Uczestnicy spotkania Toruń JUG">
+
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="../apple-icon.png">
+    <link rel="preload" as="image" href="../static/media/cover.91f954ec.jpg" fetchpriority="high">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://torun.jug.pl/#website",
+            "url": "https://torun.jug.pl/",
+            "name": "Toruń JUG",
+            "alternateName": ["Toruń Java User Group", "Torun JUG"],
+            "description": "Spotkania społeczności Java i JVM w Toruniu.",
+            "inLanguage": "pl-PL",
+            "publisher": { "@id": "https://torun.jug.pl/#organization" }
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://torun.jug.pl/#organization",
+            "name": "Toruń JUG",
+            "alternateName": "Toruń Java User Group",
+            "url": "https://torun.jug.pl/",
+            "logo": {
+              "@type": "ImageObject",
+              "@id": "https://torun.jug.pl/#logo",
+              "url": "https://torun.jug.pl/static/media/logo.png",
+              "contentUrl": "https://torun.jug.pl/static/media/logo.png",
+              "width": 1292,
+              "height": 400,
+              "caption": "Toruń JUG"
+            },
+            "image": { "@id": "https://torun.jug.pl/#primaryimage" },
+            "description": "Lokalna społeczność pasjonatów Java i technologii JVM w Toruniu.",
+            "areaServed": {
+              "@type": "City",
+              "name": "Toruń"
+            },
+            "sameAs": [
+              "https://www.youtube.com/channel/UCLuHypXd9ODOivs7gRpxNZg",
+              "https://twitter.com/TorunJUG",
+              "https://www.facebook.com/TorunJUG",
+              "https://www.linkedin.com/company/106077920"
+            ]
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://torun.jug.pl/#webpage",
+            "url": "https://torun.jug.pl/",
+            "name": "Toruń JUG – społeczność Java i JVM w Toruniu",
+            "description": "Toruń JUG zrzesza pasjonatów Java i technologii JVM. Organizujemy cykliczne spotkania, prelekcje i networking dla lokalnej społeczności IT.",
+            "isPartOf": { "@id": "https://torun.jug.pl/#website" },
+            "about": { "@id": "https://torun.jug.pl/#organization" },
+            "primaryImageOfPage": { "@id": "https://torun.jug.pl/#primaryimage" },
+            "inLanguage": "pl-PL"
+          },
+          {
+            "@type": "ImageObject",
+            "@id": "https://torun.jug.pl/#primaryimage",
+            "url": "https://torun.jug.pl/static/media/cover.91f954ec.jpg",
+            "contentUrl": "https://torun.jug.pl/static/media/cover.91f954ec.jpg",
+            "width": 2500,
+            "height": 1667,
+            "caption": "Uczestnicy spotkania Toruń Java User Group"
+          },
+          {
+            "@type": "ItemList",
+            "@id": "https://torun.jug.pl/#meetings",
+            "name": "Ostatnie spotkania Toruń JUG",
+            "numberOfItems": 10,
+            "itemListOrder": "https://schema.org/ItemListOrderDescending",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "url": "https://torun.jug.pl/spotkania/90-zmiana-pod-presja-thread-pool.html", "name": "Toruń JUG #90" },
+              { "@type": "ListItem", "position": 2, "url": "https://torun.jug.pl/spotkania/89-wspolbiezny-sadyzm-historia-programistow.html", "name": "Toruń JUG #89" },
+              { "@type": "ListItem", "position": 3, "url": "https://torun.jug.pl/spotkania/88-blue-green-opentelemetry.html", "name": "Toruń JUG #88" },
+              { "@type": "ListItem", "position": 4, "url": "https://torun.jug.pl/spotkania/87-spark-pipelines-jezykoznawcze-supermoce.html", "name": "Toruń JUG #87" },
+              { "@type": "ListItem", "position": 5, "url": "https://torun.jug.pl/spotkania/86-zarf-keycloak-architektura-komunikacyjna.html", "name": "Toruń JUG #86" },
+              { "@type": "ListItem", "position": 6, "url": "https://torun.jug.pl/spotkania/85-archunit-generatywne-ai.html", "name": "Toruń JUG #85" },
+              { "@type": "ListItem", "position": 7, "url": "https://torun.jug.pl/spotkania/84-refleksje-programisty-w-erze-ai.html", "name": "Toruń JUG #84" },
+              { "@type": "ListItem", "position": 8, "url": "https://torun.jug.pl/spotkania/83-system-design-maintenance.html", "name": "Toruń JUG #83" },
+              { "@type": "ListItem", "position": 9, "url": "https://torun.jug.pl/spotkania/82-vaadin-flow-graphql.html", "name": "Toruń JUG #82" },
+              { "@type": "ListItem", "position": 10, "url": "https://torun.jug.pl/spotkania/81-programowanie-zorientowane-na-dane-refaktoring-keycloak.html", "name": "Toruń JUG #81" }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Przejdź do treści</a>
+
+    <header class="site-header" data-header>
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="Toruń JUG – strona główna">
+          <img
+            class="brand-logo"
+            src="../static/media/logo.png"
+            width="1292"
+            height="400"
+            alt=""
+            decoding="async"
+          >
+        </a>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="main-navigation"
+          aria-label="Otwórz menu"
+          data-menu-toggle
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-panel" id="main-navigation" data-nav-panel>
+          <nav aria-label="Główna nawigacja">
+            <ul class="nav-links">
+              <li><a href="#o-nas">O nas</a></li>
+              <li><a href="#spotkania">Spotkania</a></li>
+              <li><a href="#liderzy">Liderzy</a></li>
+              <li><a href="#partnerzy">Partnerzy</a></li>
+              <li><a href="#wspolpraca">Współpraca</a></li>
+            </ul>
+          </nav>
+          <a
+            class="button button-small button-accent"
+            href="https://pawelkapala1.typeform.com/to/jvIxOo"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Zgłoś prezentację</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <img
+          class="hero-image"
+          src="../static/media/cover.91f954ec.jpg"
+          width="2500"
+          height="1667"
+          alt="Uczestnicy spotkania Toruń Java User Group w sali wykładowej"
+          fetchpriority="high"
+          decoding="async"
+        >
+        <div class="hero-overlay" aria-hidden="true"></div>
+
+        <div class="container hero-content">
+          <p class="eyebrow eyebrow-light">Java User Group <span>•</span> Toruń</p>
+          <h1 id="hero-title">Toruń JUG — społeczność Java i JVM w Toruniu</h1>
+          <p class="hero-tagline">Przyjdź i opowiedz nam swoją historię!</p>
+          <p class="hero-description">
+            Spotykamy się cyklicznie, zazwyczaj w ostatnią środę miesiąca w godzinach
+            18:00–20:00, na Wydziale Fizyki, Astronomii i Informatyki Stosowanej UMK
+            w Toruniu, przy ulicy Grudziądzkiej 5/7.
+          </p>
+
+          <div class="hero-actions">
+            <a
+              class="button button-accent"
+              href="https://www.meetup.com/Torun-JUG/events/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Zobacz najbliższe spotkanie <span aria-hidden="true">↗</span></a>
+            <a
+              class="button button-ghost"
+              href="https://pawelkapala1.typeform.com/to/jvIxOo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Zgłoś prezentację</a>
+          </div>
+
+          <ul class="meeting-facts" aria-label="Najważniejsze informacje o spotkaniach">
+            <li><strong>Ostatnia środa</strong><span>zazwyczaj raz w miesiącu</span></li>
+            <li><strong>18:00–20:00</strong><span>czas na wiedzę i networking</span></li>
+            <li><strong>WFAiIS UMK</strong><span>ul. Grudziądzka 5/7</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section section-about" id="o-nas" aria-labelledby="about-title">
+        <div class="container">
+          <div class="section-heading section-heading-centered">
+            <p class="eyebrow">Lokalna społeczność Java</p>
+            <h2 id="about-title">Kim jesteśmy?</h2>
+            <p class="section-lead">
+              Toruń JUG (Java User Group) zrzesza pasjonatów technologii opartych o Java
+              Virtual Machine, dla których programowanie to nie tylko praca, ale przede
+              wszystkim hobby i dobra zabawa. Chcemy stale rozwijać naszą wiedzę i
+              umiejętności programistyczne, a także zacieśniać więzy naszej lokalnej
+              społeczności. W tym celu organizujemy cykliczne spotkania.
+            </p>
+          </div>
+
+          <div class="values-grid">
+            <article class="value-card">
+              <span class="card-number" aria-hidden="true">01</span>
+              <h3>Społeczność</h3>
+              <p>
+                Przyjdź pół godziny wcześniej i poznaj nas. Otwieramy salę wcześniej przed
+                każdą prelekcją, żeby zachęcić do networkingu!
+              </p>
+            </article>
+
+            <article class="value-card">
+              <span class="card-number" aria-hidden="true">02</span>
+              <h3>Edukacja</h3>
+              <p>
+                Tematyka oscyluje wokół JVM, ale nie unikamy żadnego tematu przydatnemu
+                programiście. Każde spotkanie jest nagrywane i publikowane na naszym kanale
+                YouTube.
+              </p>
+            </article>
+
+            <article class="value-card">
+              <span class="card-number" aria-hidden="true">03</span>
+              <h3>Dobra zabawa</h3>
+              <p>Po każdej prezentacji spotykamy się na afterparty.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-meetings" id="spotkania" aria-labelledby="meetings-title">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Wiedza, którą możesz odtworzyć</p>
+            <h2 id="meetings-title">Ostatnie spotkania</h2>
+            <p class="section-lead">
+              Dziesięć ostatnich spotkań, posortowanych malejąco według numeru.
+              Na podstronach znajdziesz tematy, prelegentów oraz dostępne nagrania.
+            </p>
+          </div>
+
+          <ol class="meetings-list" reversed start="90">
+            <li>
+              <article class="meeting-card">
+                <div class="meeting-card-meta"><span class="meeting-number">#90</span><time datetime="2026-06-24">24 czerwca 2026</time></div>
+                <h3><a href="spotkania/90-zmiana-pod-presja-thread-pool.html">Zmiana pod presją i bottleneck w ThreadPool</a></h3>
+                <p>Łukasz Pięta · Mateusz Nalepa</p>
+                <span class="meeting-status meeting-status-pending">Nagrania jeszcze niedostępne</span>
+              </article>
+            </li>
+            <li>
+              <article class="meeting-card">
+                <div class="meeting-card-meta"><span class="meeting-number">#89</span><time datetime="2026-05-27">27 maja 2026</time></div>
+                <h3><a href="spotkania/89-wspolbiezny-sadyzm-historia-programistow.html">Odrobina współbieżnego sadyzmu i historia prób wytępienia programistów</a></h3>
+                <p>Wiktor Sztajerowski · Mariusz Strzelecki</p>
+                <span class="meeting-status">1 nagranie</span>
+              </article>
+            </li>
+            <li>
+              <article class="meeting-card">
+                <div class="meeting-card-meta"><span class="meeting-number">#88</span><time datetime="2026-04-29">29 kwietnia 2026</time></div>
+                <h3><a href="spotkania/88-blue-green-opentelemetry.html">Blue/Green deployment i OpenTelemetry Collector</a></h3>
+                <p>Jędrzej Andrykowski · Marcin Stożek</p>
+                <span class="meeting-status">2 nagrania</span>
+              </article>
+            </li>
+            <li>
+              <article class="meeting-card">
+                <div class="meeting-card-meta"><span class="meeting-number">#87</span><time datetime="2026-03-25">25 marca 2026</time></div>
+                <h3><a href="spotkania/87-spark-pipelines-jezykoznawcze-supermoce.html">Spark Pipelines i językoznawcze supermoce programisty</a></h3>
+                <p>Jacek Laskowski · Piotr Wereszczyński</p>
+                <span class="meeting-status">2 nagrania</span>
+              </article>
+            </li>
+            <li>
+              <article class="meeting-card">
+                <div class="meeting-card-meta"><span class="meeting-number">#86</span><time datetime="2026-02-25">25 lutego 2026</time></div>
+                <h3><a href="spotkania/86-zarf-keycloak-architektura-komunikacyjna.html">Zarf i Keycloak oraz architektura komunikacyjna</a></h3>
+                <p>Sebastian Łaskawiec i Michał Szynkiewicz · Anna Żołądkiewicz</p>
+                <span class="meeting-status">2 nagrania</span>
+              </article>
+            </li>
+            <li>
+              <article class="meeting-card">
+                <div class="meeting-card-meta"><span class="meeting-number">#85</span><time datetime="2026-01-28">28 stycznia 2026</time></div>
+                <h3><a href="spotkania/85-archunit-generatywne-ai.html">ArchUnit i generatywne AI w rękach developera</a></h3>
+                <p>Marcel Baumgardt · Maciej Krawczyk</p>
+                <span class="meeting-status">2 nagrania</span>
+              </article>
+            </li>
+            <li>
+              <article class="meeting-card">
+                <div class="meeting-card-meta"><span class="meeting-number">#84</span><time datetime="2025-12-10">10 grudnia 2025</time></div>
+                <h3><a href="spotkania/84-refleksje-programisty-w-erze-ai.html">Refleksje programisty w średnim wieku, w erze AI</a></h3>
+                <p>Krzysztof Muchewicz</p>
+                <span class="meeting-status meeting-status-pending">Nagranie niedostępne</span>
+              </article>
+            </li>
+            <li>
+              <article class="meeting-card">
+                <div class="meeting-card-meta"><span class="meeting-number">#83</span><time datetime="2025-11-26">26 listopada 2025</time></div>
+                <h3><a href="spotkania/83-system-design-maintenance.html">System Design Interview i ucieczka z pułapki maintenance’u</a></h3>
+                <p>Sławomir Piotrowski · Łukasz Jarochowski</p>
+                <span class="meeting-status">2 nagrania</span>
+              </article>
+            </li>
+            <li>
+              <article class="meeting-card">
+                <div class="meeting-card-meta"><span class="meeting-number">#82</span><time datetime="2025-10-29">29 października 2025</time></div>
+                <h3><a href="spotkania/82-vaadin-flow-graphql.html">Vaadin Flow i złożoność GraphQL</a></h3>
+                <p>Marcin Głowacki · Sebastian Rabiej</p>
+                <span class="meeting-status">2 nagrania</span>
+              </article>
+            </li>
+            <li>
+              <article class="meeting-card">
+                <div class="meeting-card-meta"><span class="meeting-number">#81</span><time datetime="2025-06-25">25 czerwca 2025</time></div>
+                <h3><a href="spotkania/81-programowanie-zorientowane-na-dane-refaktoring-keycloak.html">Programowanie zorientowane na dane, refaktoring i Keycloak</a></h3>
+                <p>Arkadiusz Sokołowski · Piotr Wereszczyński · Patryk Kożuchowski</p>
+                <span class="meeting-status">1 nagranie</span>
+              </article>
+            </li>
+          </ol>
+
+          <p class="meetings-source">
+            Pełne archiwum wydarzeń znajdziesz na
+            <a href="https://www.meetup.com/pl-PL/torun-jug/events/?type=past" target="_blank" rel="noopener noreferrer">Meetup <span aria-hidden="true">↗</span></a>.
+          </p>
+        </div>
+      </section>
+
+      <section class="section section-leaders" id="liderzy" aria-labelledby="leaders-title">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Poznaj organizatorów</p>
+            <h2 id="leaders-title">Liderzy</h2>
+          </div>
+
+          <div class="leaders-grid">
+            <article class="leader-card">
+              <div class="leader-intro">
+                <img
+                  src="../static/media/sawicki-lukasz.1263306c.jpg"
+                  width="440"
+                  height="440"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Łukasz Sawicki"
+                >
+                <div>
+                  <h3>Łukasz Sawicki</h3>
+                  <a class="role-link" href="https://torun.jug.pl/">Toruń JUG</a>
+                </div>
+              </div>
+              <p>
+                Programista Java z zacięciem do kodu testowego i agile'a w kierunku Scruma.
+                Zwolennik przyjaźni pomiędzy Biznesem i IT. Obecnie pracownik toruńskiego
+                oddziału 4Finance IT, w przeszłości PayU i AIS.PL. Poza godzinami pracy
+                szarpie druty gitary, fotografuje i poszukuje ideału kawy.
+              </p>
+              <ul class="profile-links" aria-label="Profile Łukasza Sawickiego">
+                <li>
+                  <a href="https://twitter.com/LookSawicki" target="_blank" rel="noopener noreferrer">
+                    X / Twitter <span aria-hidden="true">↗</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://pl.linkedin.com/in/%C5%82ukasz-sawicki-4bb4512"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >LinkedIn <span aria-hidden="true">↗</span></a>
+                </li>
+              </ul>
+            </article>
+
+            <article class="leader-card">
+              <div class="leader-intro">
+                <img
+                  src="../static/media/maszkiewicz-mateusz.4cea2437.jpeg"
+                  width="400"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Mateusz Maszkiewicz"
+                >
+                <div>
+                  <h3>Mateusz Maszkiewicz</h3>
+                  <a class="role-link" href="https://torun.jug.pl/">Toruń JUG</a>
+                </div>
+              </div>
+              <p>Członek zespołu Toruń JUG, pracujący w Allegro.</p>
+              <ul class="profile-links" aria-label="Profile Mateusza Maszkiewicza">
+                <li>
+                  <a
+                    href="https://www.linkedin.com/in/mateusz-maszkiewicz/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >LinkedIn <span aria-hidden="true">↗</span></a>
+                </li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-partners" id="partnerzy" aria-labelledby="partners-title">
+        <div class="container">
+          <div class="section-heading section-heading-centered">
+            <p class="eyebrow">Razem rozwijamy społeczność</p>
+            <h2 id="partners-title">Partnerzy</h2>
+          </div>
+
+          <div class="partners-grid">
+            <a
+              class="partner-card"
+              href="https://www.fizyka.umk.pl/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WFAiIS UMK – udostępnia sale na spotkania"
+            >
+              <span class="partner-logo partner-logo-image">
+                <img
+                  src="../static/media/wfaiis_logo.2426ce9e.jpg"
+                  width="1128"
+                  height="564"
+                  loading="lazy"
+                  decoding="async"
+                  alt="WFAiIS UMK"
+                >
+              </span>
+              <span class="partner-role">Udostępnia sale na spotkania</span>
+            </a>
+
+            <a
+              class="partner-card"
+              href="https://www.jetbrains.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="JetBrains – sponsor licencji"
+            >
+              <span class="partner-logo wordmark wordmark-jetbrains">
+                <span class="jetbrains-symbol" aria-hidden="true">JB</span>
+                <strong>JetBrains</strong>
+              </span>
+              <span class="partner-role">Sponsor licencji</span>
+            </a>
+
+            <a
+              class="partner-card"
+              href="https://simplito.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Simplito – sponsor nagrań"
+            >
+              <span class="partner-logo partner-logo-image">
+                <img
+                  src="../static/media/simplito_logo.e4f9d5a1.png"
+                  width="1188"
+                  height="319"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Simplito Software R&D"
+                >
+              </span>
+              <span class="partner-role">Sponsor nagrań</span>
+            </a>
+
+            <a
+              class="partner-card"
+              href="https://allegro.tech/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Allegro Tech – sponsor książek i kubków dla prelegentów"
+            >
+              <span class="partner-logo wordmark wordmark-allegro">
+                <strong>allegro</strong><span>Tech</span>
+              </span>
+              <span class="partner-role">Sponsor książek i kubków dla prelegentów</span>
+            </a>
+
+            <a
+              class="partner-card"
+              href="https://helion.pl/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Helion – sponsor książek"
+            >
+              <span class="partner-logo wordmark wordmark-helion"><strong>Helion</strong></span>
+              <span class="partner-role">Sponsor książek</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-collaboration" id="wspolpraca" aria-labelledby="collaboration-title">
+        <div class="container collaboration-inner">
+          <div>
+            <p class="eyebrow eyebrow-light">Dołącz do nas</p>
+            <h2 id="collaboration-title">Współpracuj z nami!</h2>
+          </div>
+          <div class="collaboration-copy">
+            <p>
+              Chcesz współtworzyć JUGa i pomóc nam rozwijać społeczność w Toruniu? Albo,
+              chciałbyś rozwinąć skrzydła jako mówca konferencji? A może poszukujesz
+              partnera do współpracy w zakresie promocji lub pozyskiwania pracowników?
+            </p>
+            <a
+              class="button button-accent"
+              href="https://pawelkapala1.typeform.com/to/jvIxOo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Skontaktuj się z nami <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <a class="brand brand-footer" href="#top" aria-label="Toruń JUG – wróć na początek">
+            <img
+              class="brand-logo"
+              src="../static/media/logo.png"
+              width="1292"
+              height="400"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            >
+          </a>
+          <p class="footer-description">
+            Spotkania społeczności Java i JVM w Toruniu. WFAiIS UMK, ul. Grudziądzka 5/7.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="footer-heading">Znajdź nas</h2>
+          <ul class="footer-links">
+            <li><a href="https://www.youtube.com/channel/UCLuHypXd9ODOivs7gRpxNZg" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+            <li><a href="https://twitter.com/TorunJUG" target="_blank" rel="noopener noreferrer">X / Twitter</a></li>
+            <li><a href="https://www.facebook.com/TorunJUG" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+            <li><a href="https://www.linkedin.com/company/106077920" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="footer-heading">Weź udział</h2>
+          <ul class="footer-links">
+            <li><a href="https://www.meetup.com/Torun-JUG/events/" target="_blank" rel="noopener noreferrer">Najbliższe wydarzenia</a></li>
+            <li><a href="#spotkania">Ostatnie spotkania</a></li>
+            <li><a href="https://pawelkapala1.typeform.com/to/jvIxOo" target="_blank" rel="noopener noreferrer">Zgłoś prezentację</a></li>
+            <li><a href="#wspolpraca">Współpraca</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p>© <span data-current-year>2026</span> Toruń JUG</p>
+        <p class="template-credit">Projekt bazowy: Creative Tim</p>
+      </div>
+    </footer>
+  </body>
+</html>
