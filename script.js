@@ -3,10 +3,24 @@ document.documentElement.classList.add("js");
 const menuToggle = document.querySelector("[data-menu-toggle]");
 const navPanel = document.querySelector("[data-nav-panel]");
 const currentYear = document.querySelector("[data-current-year]");
+const brandLogos = document.querySelectorAll('img.brand-logo[src$="logo_mini.png"]');
 
 if (currentYear) {
   currentYear.textContent = new Date().getFullYear();
 }
+
+brandLogos.forEach((logo) => {
+  const staticSource = logo.getAttribute("src");
+  const animatedSource = staticSource.replace("logo_mini.png", "logo_mini_animated.gif");
+
+  logo.addEventListener("mouseenter", () => {
+    logo.src = `${animatedSource}?restart=${Date.now()}`;
+  });
+
+  logo.addEventListener("mouseleave", () => {
+    logo.src = staticSource;
+  });
+});
 
 if (menuToggle && navPanel) {
   const closeMenu = () => {
