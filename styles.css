@@ -170,7 +170,7 @@ h3 {
 .nav-panel {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 18px;
 }
 
 .nav-links,
@@ -185,7 +185,40 @@ h3 {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 26px;
+  gap: 22px;
+}
+
+.header-socials {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.header-socials a {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: none;
+  transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.header-socials a:hover,
+.header-socials a:focus-visible {
+  border-color: var(--accent-500);
+  background: var(--accent-500);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.header-socials svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
 }
 
 .nav-links a {
@@ -1161,14 +1194,6 @@ h3 {
 }
 
 @media (max-width: 960px) {
-  .nav-links {
-    gap: 17px;
-  }
-
-  .nav-panel {
-    gap: 18px;
-  }
-
   .values-grid {
     grid-template-columns: 1fr;
   }
@@ -1193,15 +1218,9 @@ h3 {
   .meeting-sidebar {
     position: static;
   }
-}
 
-@media (max-width: 780px) {
   :root {
     --header-height: 70px;
-  }
-
-  .container {
-    width: min(calc(100% - 40px), var(--container));
   }
 
   .js .menu-toggle {
@@ -1256,6 +1275,23 @@ h3 {
 
   .nav-links a::after {
     display: none;
+  }
+
+  .header-socials {
+    justify-content: center;
+    gap: 8px;
+    padding: 4px 0;
+  }
+
+  .header-socials a {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 780px) {
+  .container {
+    width: min(calc(100% - 40px), var(--container));
   }
 
   .hero {
