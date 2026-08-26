@@ -4,7 +4,10 @@ import process from "node:process";
 import { fileURLToPath } from "node:url";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const templatePath = path.join(projectRoot, "templates", "spotkanie.html");
+const templatePaths = new Map([
+  ["v1", path.join(projectRoot, "templates", "spotkanie.html")],
+  ["v2", path.join(projectRoot, "templates", "spotkanie-v2.html")],
+]);
 const meetingsDirectory = path.join(projectRoot, "spotkania");
 
 const fail = (message) => {
@@ -76,7 +79,45 @@ const formatTime = (date) =>
     hour12: false,
   }).format(date);
 
-const renderTalks = (talks) => {
+const speakerPhotoSource = (filename, field) => {
+  const value = requiredString(filename, field);
+  if (!/^[a-zA-Z0-9][a-zA-Z0-9._-]*\.(?:avif|gif|jpe?g|png|webp)$/i.test(value)) {
+    throw new Error(`pole „${field}” musi być nazwą pliku graficznego umieszczonego w static/media`);
+  }
+
+  return `../static/media/${value}`;
+};
+
+const youtubeVideoId = (value, field) => {
+  const source = requiredUrl(value, field);
+  const url = new URL(source);
+  const hostname = url.hostname.toLowerCase().replace(/^www\./, "");
+  let videoId;
+
+  if (hostname === "youtu.be") {
+    videoId = url.pathname.split("/").filter(Boolean)[0];
+  } else if (["youtube.com", "m.youtube.com", "youtube-nocookie.com"].includes(hostname)) {
+    if (url.pathname === "/watch") videoId = url.searchParams.get("v");
+    if (/^\/(?:embed|shorts)\//.test(url.pathname)) videoId = url.pathname.split("/")[2];
+  }
+
+  if (!/^[a-zA-Z0-9_-]{11}$/.test(videoId || "")) {
+    throw new Error(`pole „${field}” musi wskazywać film w serwisie YouTube`);
+  }
+
+  return videoId;
+};
+
+const talkSpeakers = (talk, index) => {
+  const speakers = Array.isArray(talk?.speakers) ? talk.speakers : talk?.speaker ? [talk.speaker] : [];
+  if (speakers.length === 0) {
+    throw new Error(`prelekcja „talks[${index}]” musi zawierać „speaker” lub niepustą tablicę „speakers”`);
+  }
+
+  return speakers;
+};
+
+const renderTalks = (talks, templateVersion) => {
   if (!Array.isArray(talks) || talks.length === 0) {
     throw new Error("pole „talks” musi zawierać co najmniej jedną prelekcję");
   }
@@ -84,14 +125,51 @@ const renderTalks = (talks) => {
   return talks
     .map((talk, index) => {
       const title = escapeHtml(requiredString(talk?.title, `talks[${index}].title`));
-      const speaker = escapeHtml(requiredString(talk?.speaker, `talks[${index}].speaker`));
-      const recording = talk?.recordingUrl
-        ? `<a class="talk-action" href="${escapeHtml(requiredUrl(talk.recordingUrl, `talks[${index}].recordingUrl`))}" target="_blank" rel="noopener noreferrer">Obejrzyj na YouTube <span aria-hidden="true">▶</span></a>`
-        : '<span class="talk-unavailable">Nagranie jeszcze niedostępne</span>';
+      const description = escapeHtml(requiredString(talk?.description, `talks[${index}].description`));
+      const speakers = talkSpeakers(talk, index);
+      const speakerProfiles = speakers
+        .map((speaker, speakerIndex) => {
+          const prefix = `talks[${index}].speakers[${speakerIndex}]`;
+          const speakerName = escapeHtml(requiredString(speaker?.name, `${prefix}.name`));
+          const speakerBio = escapeHtml(requiredString(speaker?.bio, `${prefix}.bio`));
+          const photoSource = escapeHtml(speakerPhotoSource(speaker?.photo, `${prefix}.photo`));
+
+          return `                  <section class="talk-speaker-profile" aria-label="Informacje o prelegencie">
+                    <img class="talk-speaker-photo" src="${photoSource}" width="300" height="300" alt="Zdjęcie: ${speakerName}" loading="lazy" decoding="async">
+                    <div class="talk-speaker-details">
+                      <p class="talk-speaker-label">Prelegent</p>
+                      <h4>${speakerName}</h4>
+                      <p class="talk-speaker-bio">${speakerBio}</p>
+                    </div>
+                  </section>`;
+        })
+        .join("\n");
+      let recording = '<span class="talk-unavailable">Nagranie jeszcze niedostępne</span>';
+
+      if (talk?.recordingUrl) {
+        const recordingField = `talks[${index}].recordingUrl`;
+        const recordingUrl = requiredUrl(talk.recordingUrl, recordingField);
+        const videoId = youtubeVideoId(recordingUrl, recordingField);
+
+        recording =
+          templateVersion === "v2"
+            ? `<div class="talk-recording">
+                  <div class="talk-video talk-video-desktop">
+                    <iframe src="https://www.youtube.com/embed/${videoId}" title="Nagranie prelekcji: ${title}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                  </div>
+                  <a class="button button-primary talk-video-mobile-action" href="${escapeHtml(recordingUrl)}" target="_blank" rel="noopener noreferrer">Obejrzyj nagranie na YouTube <span aria-hidden="true">↗</span></a>
+                </div>`
+            : `<div class="talk-video">
+                  <iframe src="https://www.youtube-nocookie.com/embed/${videoId}" title="Nagranie prelekcji: ${title}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>`;
+      }
 
       return `              <article class="talk-card">
                 <h3>${title}</h3>
-                <p class="talk-speaker">${speaker}</p>
+                <p class="talk-description">${description}</p>
+                <div class="talk-speakers">
+${speakerProfiles}
+                </div>
                 ${recording}
               </article>`;
     })
@@ -133,7 +211,7 @@ const eventStatuses = {
   postponed: "https://schema.org/EventPostponed",
 };
 
-const render = (template, data) => {
+const render = (template, data, templateVersion) => {
   const number = Number(data.number);
   if (!Number.isInteger(number) || number < 1) {
     throw new Error("pole „number” musi być dodatnią liczbą całkowitą");
@@ -170,11 +248,23 @@ const render = (template, data) => {
     ? requiredUrl(data.ogImage, "ogImage")
     : "https://torun.jug.pl/static/media/cover.jpg";
   const dateLabel = formatDate(start.date);
-  const talks = renderTalks(data.talks);
-  const performers = data.talks.map((talk, index) => ({
-    "@type": "Person",
-    name: requiredString(talk?.speaker, `talks[${index}].speaker`),
-  }));
+  const talks = renderTalks(data.talks, templateVersion);
+  const performers = data.talks.flatMap((talk, index) =>
+    talkSpeakers(talk, index).map((speaker, speakerIndex) => {
+      const prefix = `talks[${index}].speakers[${speakerIndex}]`;
+      const speakerName = requiredString(speaker?.name, `${prefix}.name`);
+      const speakerBio = requiredString(speaker?.bio, `${prefix}.bio`);
+      const speakerPhoto = requiredString(speaker?.photo, `${prefix}.photo`);
+      speakerPhotoSource(speakerPhoto, `${prefix}.photo`);
+
+      return {
+        "@type": "Person",
+        name: speakerName,
+        description: speakerBio,
+        image: `https://torun.jug.pl/static/media/${speakerPhoto}`,
+      };
+    }),
+  );
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Event",
@@ -213,10 +303,6 @@ const render = (template, data) => {
     placeAndCity: `${place}, ${city}`,
     talks,
     meetingNavigation: renderNavigation(data.navigation),
-    dateLabel,
-    place,
-    addressAndCity: `${address}, ${city}`,
-    admission: data.admission || "Bezpłatny",
     meetupLabel,
     year: start.date.getFullYear(),
   };
@@ -233,6 +319,7 @@ const main = async () => {
   const args = process.argv.slice(2);
   const outputFlag = args.indexOf("--output");
   let outputArgument;
+  let templateVersion = "v1";
 
   if (outputFlag !== -1) {
     outputArgument = args[outputFlag + 1];
@@ -240,8 +327,21 @@ const main = async () => {
     args.splice(outputFlag, 2);
   }
 
+  const currentTemplateFlag = args.indexOf("--template");
+  if (currentTemplateFlag !== -1) {
+    const flagIndex = currentTemplateFlag;
+    templateVersion = args[flagIndex + 1];
+    if (!templateVersion) throw new Error("po --template podaj wersję: v1 albo v2");
+    args.splice(flagIndex, 2);
+  }
+
+  const templatePath = templatePaths.get(templateVersion);
+  if (!templatePath) {
+    throw new Error(`nieznana wersja szablonu „${templateVersion}”; wybierz v1 albo v2`);
+  }
+
   if (args.length !== 1) {
-    throw new Error("użycie: node scripts/generate-meeting.mjs <dane.json> [--output <plik.html>]");
+    throw new Error("użycie: node scripts/generate-meeting.mjs <dane.json> [--template v1|v2] [--output <plik.html>]");
   }
 
   const dataPath = path.resolve(process.cwd(), args[0]);
@@ -250,7 +350,7 @@ const main = async () => {
     readFile(dataPath, "utf8"),
   ]);
   const data = JSON.parse(source);
-  const html = render(template, data);
+  const html = render(template, data, templateVersion);
   const outputPath = outputArgument
     ? path.resolve(process.cwd(), outputArgument)
     : path.join(meetingsDirectory, `${data.slug}.html`);

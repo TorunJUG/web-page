@@ -11,7 +11,6 @@
     "address": "ul. Grudziądzka 5/7",
     "city": "Toruń"
   },
-  "admission": "Bezpłatny",
   "meetup": {
     "url": "https://www.meetup.com/pl-PL/torun-jug/events/ID-WYDARZENIA/",
     "label": "Wydarzenie na Meetup"
@@ -19,13 +18,27 @@
   "talks": [
     {
       "title": "Tytuł pierwszej prelekcji",
-      "speaker": "Imię i nazwisko",
+      "description": "Opis pierwszej prelekcji skopiowany z wydarzenia na Meetup. Może zawierać kilka akapitów tekstu.",
+      "speakers": [
+        {
+          "name": "Imię i nazwisko",
+          "bio": "Krótka informacja o doświadczeniu, specjalizacji i zainteresowaniach prelegenta.",
+          "photo": "imie-nazwisko.jpg"
+        }
+      ],
       "recordingUrl": null
     },
     {
       "title": "Tytuł drugiej prelekcji",
-      "speaker": "Imię i nazwisko",
-      "recordingUrl": "https://www.youtube.com/watch?v=ID-NAGRANIA"
+      "description": "Opis drugiej prelekcji skopiowany z wydarzenia na Meetup.",
+      "speakers": [
+        {
+          "name": "Imię i nazwisko",
+          "bio": "Krótka informacja o prelegencie.",
+          "photo": "imie-nazwisko.jpg"
+        }
+      ],
+      "recordingUrl": "https://www.youtube.com/watch?v=AyNTM6eVy-k"
     }
   ],
   "navigation": {
