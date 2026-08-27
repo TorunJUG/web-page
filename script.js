@@ -77,6 +77,52 @@ if (currentYear) {
   currentYear.textContent = new Date().getFullYear();
 }
 
+const counters = document.querySelectorAll("[data-counter]");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const animateCounter = (counter) => {
+  const target = Number(counter.dataset.counter);
+
+  if (!Number.isFinite(target) || prefersReducedMotion) {
+    counter.textContent = String(target);
+    return;
+  }
+
+  const duration = 1400;
+  const startTime = performance.now();
+
+  const updateCounter = (currentTime) => {
+    const progress = Math.min((currentTime - startTime) / duration, 1);
+    const easedProgress = 1 - Math.pow(1 - progress, 3);
+    counter.textContent = String(Math.round(target * easedProgress));
+
+    if (progress < 1) {
+      window.requestAnimationFrame(updateCounter);
+    }
+  };
+
+  window.requestAnimationFrame(updateCounter);
+};
+
+if (counters.length > 0 && !prefersReducedMotion && "IntersectionObserver" in window) {
+  counters.forEach((counter) => {
+    counter.textContent = "0";
+  });
+
+  const countersObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) {
+        return;
+      }
+
+      animateCounter(entry.target);
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.45 });
+
+  counters.forEach((counter) => countersObserver.observe(counter));
+}
+
 document.querySelectorAll("[data-meetings-carousel]").forEach((carousel) => {
   const viewport = carousel.querySelector("[data-meetings-viewport]");
   const items = Array.from(carousel.querySelectorAll(".meetings-list > li"));
