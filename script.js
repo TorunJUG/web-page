@@ -77,6 +77,88 @@ if (currentYear) {
   currentYear.textContent = new Date().getFullYear();
 }
 
+document.querySelectorAll("[data-meetings-carousel]").forEach((carousel) => {
+  const viewport = carousel.querySelector("[data-meetings-viewport]");
+  const items = Array.from(carousel.querySelectorAll(".meetings-list > li"));
+  const previousButton = carousel.querySelector("[data-carousel-previous]");
+  const nextButton = carousel.querySelector("[data-carousel-next]");
+  const progress = carousel.querySelector("[data-carousel-progress]");
+  const position = carousel.querySelector("[data-carousel-position]");
+
+  if (!viewport || items.length === 0 || !previousButton || !nextButton || !progress || !position) {
+    return;
+  }
+
+  let currentIndex = 0;
+  let frameId;
+
+  const getStep = () => {
+    if (items.length < 2) {
+      return viewport.clientWidth;
+    }
+
+    return items[1].offsetLeft - items[0].offsetLeft;
+  };
+
+  const getMaxIndex = () => {
+    const step = getStep();
+    return step > 0 ? Math.ceil((viewport.scrollWidth - viewport.clientWidth) / step) : 0;
+  };
+
+  const updateControls = () => {
+    const step = getStep();
+    const maxIndex = getMaxIndex();
+    currentIndex = step > 0 ? Math.min(maxIndex, Math.round(viewport.scrollLeft / step)) : 0;
+
+    const visibleCount = Math.min(items.length - currentIndex, Math.max(1, Math.round(viewport.clientWidth / step)));
+    const firstVisible = currentIndex + 1;
+    const lastVisible = Math.min(items.length, firstVisible + visibleCount - 1);
+
+    progress.max = String(maxIndex);
+    progress.value = String(currentIndex);
+    progress.setAttribute(
+      "aria-valuetext",
+      firstVisible === lastVisible
+        ? `Spotkanie ${firstVisible} z ${items.length}`
+        : `Spotkania ${firstVisible} do ${lastVisible} z ${items.length}`
+    );
+    position.textContent = firstVisible === lastVisible
+      ? `${firstVisible} z ${items.length}`
+      : `${firstVisible}–${lastVisible} z ${items.length}`;
+    previousButton.disabled = currentIndex === 0;
+    nextButton.disabled = currentIndex === maxIndex;
+  };
+
+  const scrollToIndex = (index) => {
+    const maxIndex = getMaxIndex();
+    const nextIndex = Math.max(0, Math.min(maxIndex, index));
+    const maximumScroll = viewport.scrollWidth - viewport.clientWidth;
+    viewport.scrollTo({
+      left: Math.min(nextIndex * getStep(), maximumScroll),
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+    });
+  };
+
+  previousButton.addEventListener("click", () => scrollToIndex(currentIndex - 1));
+  nextButton.addEventListener("click", () => scrollToIndex(currentIndex + 1));
+  progress.addEventListener("input", () => scrollToIndex(Number(progress.value)));
+
+  viewport.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+      event.preventDefault();
+      scrollToIndex(currentIndex + (event.key === "ArrowRight" ? 1 : -1));
+    }
+  });
+
+  viewport.addEventListener("scroll", () => {
+    window.cancelAnimationFrame(frameId);
+    frameId = window.requestAnimationFrame(updateControls);
+  }, { passive: true });
+
+  window.addEventListener("resize", updateControls);
+  updateControls();
+});
+
 brandLogos.forEach((logo) => {
   const staticSource = logo.getAttribute("src");
   const animatedSource = staticSource.replace("logo_mini.png", "logo_mini_animated.gif");

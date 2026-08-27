@@ -313,7 +313,14 @@
             </p>
           </div>
 
-          <ol class="meetings-list" reversed start="90">
+          <div class="meetings-carousel" data-meetings-carousel>
+            <div
+              class="meetings-carousel-viewport"
+              data-meetings-viewport
+              tabindex="0"
+              aria-label="Ostatnie spotkania. Przewiń poziomo, aby zobaczyć kolejne."
+            >
+              <ol class="meetings-list" reversed start="90">
             <li>
               <article class="meeting-card">
                 <div class="meeting-card-meta"><span class="meeting-number">#90</span><time datetime="2026-06-24">24 czerwca 2026</time></div>
@@ -394,7 +401,40 @@
                 <span class="meeting-status">1 nagranie</span>
               </article>
             </li>
-          </ol>
+              </ol>
+            </div>
+
+            <div class="meetings-carousel-controls" aria-label="Sterowanie karuzelą spotkań">
+              <button
+                class="carousel-button"
+                type="button"
+                data-carousel-previous
+                aria-label="Pokaż nowsze spotkanie"
+              ><span aria-hidden="true">←</span></button>
+
+              <label class="carousel-progress">
+                <span class="visually-hidden">Pozycja w karuzeli spotkań</span>
+                <input
+                  type="range"
+                  min="0"
+                  max="9"
+                  value="0"
+                  step="1"
+                  data-carousel-progress
+                  aria-label="Pozycja w karuzeli spotkań"
+                >
+              </label>
+
+              <span class="carousel-position" data-carousel-position aria-live="polite">1 z 10</span>
+
+              <button
+                class="carousel-button"
+                type="button"
+                data-carousel-next
+                aria-label="Pokaż starsze spotkanie"
+              ><span aria-hidden="true">→</span></button>
+            </div>
+          </div>
         </div>
       </section>
 
