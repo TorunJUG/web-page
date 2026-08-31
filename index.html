@@ -134,6 +134,17 @@
               { "@type": "ListItem", "position": 9, "url": "https://torun.jug.pl/spotkania/82-vaadin-flow-graphql.html", "name": "Toruń JUG #82" },
               { "@type": "ListItem", "position": 10, "url": "https://torun.jug.pl/spotkania/81-programowanie-zorientowane-na-dane-refaktoring-keycloak.html", "name": "Toruń JUG #81" }
             ]
+          },
+          {
+            "@type": "ItemList",
+            "@id": "https://torun.jug.pl/#events",
+            "name": "Wydarzenia specjalne Toruń JUG",
+            "numberOfItems": 2,
+            "itemListOrder": "https://schema.org/ItemListOrderDescending",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "url": "https://torun.jug.pl/wydarzenia/torun-jug-day-2024.html", "name": "Toruń JUG Day 2024" },
+              { "@type": "ListItem", "position": 2, "url": "https://torun.jug.pl/wydarzenia/torun-jug-day-2017.html", "name": "Toruń JUG Day 2017" }
+            ]
           }
         ]
       }
@@ -483,6 +494,69 @@
         </div>
       </section>
 
+      <section class="section section-events" id="wydarzenia" aria-labelledby="events-title">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Więcej niż comiesięczne spotkania</p>
+            <h2 id="events-title">Nasze wydarzenia</h2>
+            <p class="section-lead">
+              Toruń JUG Day jedyne w swoim rodzaju całodniowe spotkania z dodatkową dawką integracji a nawet muzyki na żywo.
+            </p>
+          </div>
+
+          <div class="events-grid">
+
+            <article class="event-card">
+              <a href="wydarzenia/torun-jug-day-2024.html" aria-label="Zobacz szczegóły Toruń JUG Day 2024">
+                <div class="event-card-media event-card-media-poster">
+                  <img
+                    src="./static/media/torun-jug-day-2024.jpeg"
+                    width="1280"
+                    height="720"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Plakat Toruń JUG Day 2024 z prelegentami wydarzenia"
+                  >
+                </div>
+                <div class="event-card-content">
+                  <div class="event-card-meta">
+                    <time datetime="2024-05-18">18 maja 2024</time>
+                    <span>Toruński Inkubator Technologiczny</span>
+                  </div>
+                  <h3>Toruń JUG Day 2024</h3>
+                  <p>Cztery prelekcje, dziesięciolecie Toruń JUG i koncert Code Life Crisis.</p>
+                  <span class="event-card-action">Poznaj wydarzenie <span aria-hidden="true">→</span></span>
+                </div>
+              </a>
+            </article>
+
+            <article class="event-card">
+              <a href="wydarzenia/torun-jug-day-2017.html" aria-label="Zobacz szczegóły Toruń JUG Day 2017">
+                <div class="event-card-media">
+                  <img
+                    src="./static/media/cover-jugday-2.jpeg"
+                    width="1471"
+                    height="932"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Uczestnicy Toruń JUG Day 2017 z Venkatem Subramaniamem"
+                  >
+                </div>
+                <div class="event-card-content">
+                  <div class="event-card-meta">
+                    <time datetime="2017-06-24">24 czerwca 2017</time>
+                    <span>Business Link Toruń</span>
+                  </div>
+                  <h3>Toruń JUG Day 2017</h3>
+                  <p>Całodniowe spotkanie z gościem specjalnym Venkatem Subramaniamem.</p>
+                  <span class="event-card-action">Poznaj wydarzenie <span aria-hidden="true">→</span></span>
+                </div>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section class="section section-leaders" id="liderzy" aria-labelledby="leaders-title">
         <div class="container">
           <div class="section-heading">
@@ -741,7 +815,6 @@
 
       <div class="container footer-bottom">
         <p>© <span data-current-year>2026</span> Toruń JUG</p>
-        <p class="template-credit">Projekt bazowy: Creative Tim</p>
       </div>
     </footer>
   </body>
