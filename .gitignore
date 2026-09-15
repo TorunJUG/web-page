@@ -1,6 +1,7 @@
 ### Node
 # Dependencies
 node_modules/
+analiza-prelegentow/
 
 # Logs
 *.log
@@ -51,7 +52,8 @@ out/
 ._*
 
 # Custom folder icons
-Icon
+Icon
+
 
 # Volume root files
 .DocumentRevisions-V100
